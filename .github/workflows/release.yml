@@ -1,0 +1,48 @@
+name: Release-ZIP bauen
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Abhaengigkeiten installieren
+        run: npm ci --omit=dev
+
+      - name: Tests
+        run: npm test
+
+      - name: ZIP packen (inkl. node_modules, sofort einsatzbereit)
+        run: |
+          NAME="lynx-greenmachine-${GITHUB_REF_NAME}"
+          mkdir -p dist/lynx-greenmachine dist/Tools
+          cp -r companion src main.js package.json package-lock.json INSTALLATION.md README.md LICENSE node_modules dist/lynx-greenmachine/
+          cp tools/windows/greenmachine-parameter.ps1 dist/Tools/
+          cd dist && zip -qr "../${NAME}.zip" lynx-greenmachine Tools
+          echo "ZIP=${NAME}.zip" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lynx-greenmachine
+          path: ${{ env.ZIP }}
+
+      - name: Release anlegen
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$ZIP" \
+            --title "LYNX greenMachine Modul $GITHUB_REF_NAME" \
+            --notes "Fertiges Paket inkl. node_modules. ZIP entpacken, Ordner lynx-greenmachine in Bitfocus Buttons unter Configuration data > Local module paths eintragen, Buttons neu starten. Details in INSTALLATION.md."
