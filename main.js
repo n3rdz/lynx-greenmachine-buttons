@@ -127,7 +127,7 @@ class GreenMachineInstance extends InstanceBase {
 					{ id: 'ctrl', label: 'ctrl' },
 				],
 			},
-			{ type: 'textinput', id: 'password', label: 'Passwort', width: 6, default: '' },
+			{ type: 'textinput', id: 'password', label: 'Passwort', width: 6, default: 'lynx$admin' },
 			{ type: 'textinput', id: 'slot', label: 'Adresse des Verarbeitungsmoduls', width: 6, default: '1' },
 			{
 				type: 'checkbox',

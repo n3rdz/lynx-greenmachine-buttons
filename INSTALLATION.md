@@ -1,6 +1,6 @@
 # LYNX greenMachine Modul für Bitfocus Buttons – Installation
 
-Ordner (Beispiel): `D:\Claude\Bitfocus Buttons\lynx-greenmachine` (Version 0.2.0)
+Ordner (Beispiel): `D:\Claude\Bitfocus Buttons\lynx-greenmachine` (Version 0.2.1)
 
 **Fertiges Paket von GitHub (Releases):** enthält `node_modules` bereits. Dann Schritt 1 überspringen, kein Node.js nötig.
 
@@ -26,7 +26,7 @@ Nach einem Update der Moduldateien reicht es, Buttons neu zu starten. `npm insta
 ## 3. Verbindung anlegen
 
 1. **Connect → Connection → +Add**, nach „greenMachine“ suchen.
-2. IP `10.4.111.102`, Port `2306`, Benutzer `admin`, Passwort eintragen.
+2. IP `10.4.111.102` und Port `2306` prüfen. Benutzer `admin` und Passwort sind schon vorbelegt.
 3. Speichern. Status wird grün; die Variable `scan_status` zeigt nach einigen Sekunden „fertig: … schaltbare Parameter“.
 
 ## 4. Tasten anlegen

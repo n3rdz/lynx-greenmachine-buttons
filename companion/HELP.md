@@ -4,7 +4,7 @@ Steuert eine LYNX greenMachine über das LYNX Remote Control Protocol (TCP-Port 
 
 **Einstellungen**
 - IP der greenMachine (Standard 10.4.111.102), Port 2306
-- Benutzer `admin` oder `ctrl` und Passwort
+- Benutzer `admin` oder `ctrl` und Passwort (mit dem Standard-Login vorbelegt)
 - Live auslesen: an lassen, dann passt sich das Modul jeder Konstellation an
 - Zusätzliche Variablen: Parameternamen mit Komma getrennt, z. B. `Conv1/ControlMode, HDMIOut/AudioType`
 
